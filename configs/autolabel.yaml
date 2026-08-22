@@ -1,0 +1,9 @@
+defaults:
+  - autolabeler: gdino_b015_t015_nms05_c08
+  - _self_
+
+frames_dir: data/dataset/images/train
+labels_dir: data/dataset/labels_greedy/train
+labels_debug_dir: data/dataset/labels_greedy_debug
+save_debug: true
+class_id: 0

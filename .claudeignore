@@ -1,0 +1,34 @@
+# Poetry & Git
+.venv/
+poetry.lock
+.git/
+__pycache__/
+*.pyc
+
+# ML Datasets & Heavy Data (RSNA DICOMs)
+data/
+raw_data/
+*.dcm
+*.png
+*.jpg
+*.jpeg
+*.npy
+*.mp4
+*.npz
+*.csv
+data/nifti/
+*.nii
+*.nii.gz
+*.zip
+
+# Model Checkpoints & Logs
+checkpoints/
+models/*.pt
+models/*.pth
+models/*.safetensors
+runs/
+wandb/
+*.log
+
+# Notebook Outputs / Cache
+.ipynb_checkpoints/
