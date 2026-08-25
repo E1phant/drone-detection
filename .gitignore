@@ -10,7 +10,6 @@ future_tests
 temp
 lightning_logs_tensorboard
 logdirs
-outputs
 hydra_temp
 rb_env
 *.csv
@@ -22,6 +21,11 @@ common/
 data/
 !src/data/
 !config/data/
+outputs/*
+!outputs/final_eval/
+outputs/final_eval/*
+!outputs/final_eval/visualizations/
+!outputs/final_eval/visualizations/**
 .claude/
 .pytest_cache/
 wandb/
