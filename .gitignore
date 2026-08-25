@@ -24,6 +24,7 @@ data/
 !config/data/
 .claude/
 .pytest_cache/
+wandb/
 
 .DS_Store
 

@@ -1,0 +1,22 @@
+defaults:
+  - model: yolov8
+  - inference: default
+  - metrics: distance_bands
+  - wandb: default
+  - _self_
+
+checkpoint: /gpfs/helios/home/artur1/4thlaw/outputs/fold_all/weights/best.pt
+
+eval_gt_xml: data/eval_gt/annotations.xml
+eval_images_dir: data/eval_gt/images/eval/eval
+eval_labels_dir: data/eval_gt/labels/eval/eval
+
+fps: 30
+
+exclude_frame0_tracks_from_ttfd: true
+
+output_dir: outputs/final_eval
+
+hydra:
+  run:
+    dir: outputs/.hydra_logs/evaluate_final/${now:%Y-%m-%d_%H-%M-%S}

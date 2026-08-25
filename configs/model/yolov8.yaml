@@ -1,0 +1,4 @@
+_target_: src.models.yolo_detector.YoloDetector
+checkpoint: yolov8s.pt
+
+image_size: 1920

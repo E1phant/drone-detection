@@ -1,0 +1,8 @@
+epochs: 100
+batch_size: 16
+learning_rate: 0.01
+optimizer: auto
+workers: 8
+seed: 0
+patience: 30
+device: "0"

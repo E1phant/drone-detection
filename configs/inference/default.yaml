@@ -1,0 +1,7 @@
+confidence_threshold: 0.1
+nms_iou_threshold: 0.5
+matching_iou_threshold: 0.5
+
+max_det: 100
+
+strategy: full_frame

@@ -1,0 +1,5 @@
+fov_deg: 84.0
+car_length_m: 4.5
+car_width_m: 1.8
+band_1_max_m: 200.0
+band_2_max_m: 400.0

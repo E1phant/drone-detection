@@ -1,0 +1,23 @@
+defaults:
+  - data: pexels_aerial
+  - model: yolov8
+  - inference: default
+  - confidence_sweep: default
+  - metrics: distance_bands
+  - wandb: default
+  - _self_
+
+# fold: A | B | C | D  (an already-trained held-out video's fold; "all" has no held-out data to evaluate)
+fold: A
+checkpoint: outputs/fold_A/weights/best.pt
+
+train_dataset_dir: data/train_dataset
+images_dir: data/train_dataset/images/train
+gt_labels_dir: data/train_dataset/gt_labels/train
+splits_dir: data/train_dataset/splits
+class_names:
+  0: vehicle
+
+hydra:
+  run:
+    dir: outputs/.hydra_logs/evaluate_detector/${now:%Y-%m-%d_%H-%M-%S}

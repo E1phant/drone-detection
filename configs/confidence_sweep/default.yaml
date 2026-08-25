@@ -1,0 +1,16 @@
+enabled: true
+thresholds:
+  - 0.01
+  - 0.025
+  - 0.05
+  - 0.075
+  - 0.10
+  - 0.15
+  - 0.20
+  - 0.25
+  - 0.30
+  - 0.40
+  - 0.50
+every_n_epochs: 10
+
+run_on_best_checkpoint: true

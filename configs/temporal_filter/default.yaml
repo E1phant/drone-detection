@@ -1,0 +1,8 @@
+enabled: true
+target_video_id: train_A
+
+min_track_length: 6
+max_center_distance: 0.005
+max_size_change: 0.10
+
+max_confidence: 0.50

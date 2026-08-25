@@ -29,6 +29,7 @@ pycocotools = "^2.0.7"
 scipy = "^1.12.0"
 transformers = "^4.40.0"
 accelerate = "^0.29.0"
+wandb = "^0.28.2"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0.0"

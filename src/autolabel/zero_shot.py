@@ -40,12 +40,6 @@ def nms_keep_indices(detections: List[Detection], iou_threshold: float) -> List[
 def containment_ratio(
     box_a: Tuple[float, float, float, float], box_b: Tuple[float, float, float, float]
 ) -> float:
-    """intersection_area / area_of_smaller_box for two xyxy boxes.
-
-    Unlike IoU, this stays high when a small box sits inside a much larger one
-    (nested duplicate detections), which is exactly the case plain NMS misses
-    since the union area is dominated by the large box.
-    """
     ax1, ay1, ax2, ay2 = box_a
     bx1, by1, bx2, by2 = box_b
 
@@ -67,17 +61,6 @@ def containment_ratio(
 def apply_containment_filter(
     detections: List[Detection], containment_threshold: float
 ) -> Tuple[List[Detection], Set[int]]:
-    """Greedy containment-based dedup, run on top of (already NMS-filtered) detections.
-
-    Processes boxes highest-score first; a later box is dropped if it is almost
-    fully contained in (or contains) a higher-confidence box already kept, since
-    that is very likely the same physical vehicle picked up twice by different
-    prompt phrases. Two separate nearby vehicles only overlap partially relative
-    to either box's own area, so their containment ratio stays low and both survive.
-
-    Returns (kept_detections, removed_indices) where `removed_indices` refers to
-    positions in the input `detections` list.
-    """
     if not detections:
         return [], set()
 
@@ -124,12 +107,6 @@ def detections_to_yolo_lines(
 
 
 class GroundingDinoAutoLabeler:
-    """Zero-shot pseudo-labeler backed by an open-vocabulary Grounding DINO checkpoint.
-
-    Uses a general-purpose HF checkpoint (grounded on Objects365/GoldG/Cap4M, ...),
-    never a checkpoint fine-tuned on aerial detection datasets, per the project's
-    No Cheat Rule.
-    """
 
     def __init__(
         self,
@@ -216,6 +193,7 @@ class GroundingDinoAutoLabeler:
                 "label": det.label,
                 "survived_nms": idx in nms_keep_set,
                 "removed_by_containment": idx in containment_removed_raw,
+                "is_final": idx in nms_keep_set and idx not in containment_removed_raw,
             }
             for idx, det in enumerate(raw_detections)
         ]

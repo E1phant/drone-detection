@@ -1,0 +1,27 @@
+defaults:
+  - data: pexels_aerial
+  - model: yolov8
+  - trainer: default
+  - inference: default
+  - confidence_sweep: default
+  - metrics: distance_bands
+  - wandb: default
+  - _self_
+
+# fold: A | B | C | D | all
+# A/B/C/D = leave-one-video-out (that video held out for validation).
+# all = train the final detector on every video combined (no held-out data;
+fold: all
+exp_name: "yoloV8_max_det100_fold-${fold}"
+
+train_dataset_dir: data/train_dataset
+images_dir: data/train_dataset/images/train
+gt_labels_dir: data/train_dataset/gt_labels/train
+splits_dir: data/train_dataset/splits
+outputs_dir: outputs
+class_names:
+  0: vehicle
+
+hydra:
+  run:
+    dir: outputs/.hydra_logs/train_detector/${now:%Y-%m-%d_%H-%M-%S}
